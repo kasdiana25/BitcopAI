@@ -1,0 +1,1295 @@
+
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>
+Bitcop — недельный AI-отчёт
+</title>
+
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f4f6f8;
+
+    color: #222;
+}
+
+
+.container {
+
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    padding: 30px;
+}
+
+
+.header {
+
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 30px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 3px 15px rgba(0,0,0,0.06);
+}
+
+
+.header h1 {
+
+    margin: 0 0 10px 0;
+
+    font-size: 30px;
+}
+
+
+.header p {
+
+    margin: 5px 0;
+
+    color: #666;
+
+    font-size: 16px;
+}
+
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+
+.stat {
+
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 3px 15px rgba(0,0,0,0.05);
+}
+
+
+.stat-title {
+
+    color: #777;
+
+    font-size: 14px;
+
+    margin-bottom: 8px;
+}
+
+
+.stat-value {
+
+    font-size: 25px;
+
+    font-weight: bold;
+}
+
+
+.section {
+
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 3px 15px rgba(0,0,0,0.05);
+}
+
+
+.section h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   AI
+   ========================================================= */
+
+.ai-section {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f5f7ff
+        );
+}
+
+
+.ai-summary {
+
+    background: #f8f9ff;
+
+    border-left:
+        5px solid #667eea;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+}
+
+
+.ai-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(400px, 1fr));
+
+    gap: 18px;
+}
+
+
+.ai-card {
+
+    background: #fff;
+
+    border-radius: 14px;
+
+    padding: 20px;
+
+    border:
+        1px solid #e5e7eb;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,0.04);
+}
+
+
+.ai-card-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 17px;
+
+    margin-bottom: 15px;
+
+    padding-bottom: 12px;
+
+    border-bottom:
+        1px solid #eee;
+}
+
+
+.ai-icon {
+
+    font-size: 22px;
+}
+
+
+.ai-content {
+
+    line-height: 1.6;
+
+    color: #444;
+
+    font-size: 14px;
+}
+
+
+.ai-content p {
+
+    margin:
+        0 0 12px 0;
+}
+
+
+/* =========================================================
+   СОТРУДНИКИ
+   ========================================================= */
+
+.employee-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 18px;
+}
+
+
+.employee-card {
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    background: #f8f9fa;
+
+    border-left:
+        6px solid #aaa;
+}
+
+
+.employee-card.good {
+
+    border-left-color: #27ae60;
+}
+
+
+.employee-card.medium {
+
+    border-left-color: #f39c12;
+}
+
+
+.employee-card.low {
+
+    border-left-color: #e67e22;
+}
+
+
+.employee-card.critical {
+
+    border-left-color: #e74c3c;
+}
+
+
+.employee-name {
+
+    font-size: 19px;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+}
+
+
+.employee-percent {
+
+    font-size: 34px;
+
+    font-weight: bold;
+
+    margin-bottom: 4px;
+}
+
+
+.employee-status {
+
+    color: #777;
+
+    margin-bottom: 18px;
+}
+
+
+.employee-info {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 12px;
+}
+
+
+.employee-info div {
+
+    background: white;
+
+    padding: 10px;
+
+    border-radius: 8px;
+}
+
+
+.employee-info span {
+
+    display: block;
+
+    color: #777;
+
+    font-size: 12px;
+
+    margin-bottom: 4px;
+}
+
+
+.employee-info strong {
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   ТАБЛИЦА
+   ========================================================= */
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+
+th {
+
+    text-align: left;
+
+    background: #f1f3f5;
+
+    padding: 14px;
+
+    font-size: 13px;
+
+    color: #555;
+}
+
+
+td {
+
+    padding: 14px;
+
+    border-bottom:
+        1px solid #eee;
+
+    font-size: 14px;
+}
+
+
+.percent {
+
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-weight: bold;
+}
+
+
+.percent.good {
+
+    background: #dff5e7;
+
+    color: #218838;
+}
+
+
+.percent.medium {
+
+    background: #fff3cd;
+
+    color: #856404;
+}
+
+
+.percent.low {
+
+    background: #ffe5cc;
+
+    color: #b35c00;
+}
+
+
+.percent.critical {
+
+    background: #f8d7da;
+
+    color: #a71d2a;
+}
+
+
+.footer {
+
+    text-align: center;
+
+    color: #888;
+
+    padding: 20px;
+
+    font-size: 13px;
+}
+
+
+@media (max-width: 1000px) {
+
+    .stats {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .container {
+
+        padding: 15px;
+    }
+
+    .stats {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .ai-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    table {
+
+        font-size: 12px;
+    }
+
+    th,
+    td {
+
+        padding: 8px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- =====================================================
+         ЗАГОЛОВОК
+         ===================================================== -->
+
+    <div class="header">
+
+        <h1>
+            📊 Недельный AI-отчёт Bitcop
+        </h1>
+
+        <p>
+            Период:
+            <strong>
+                28.09.2026
+                —
+                04.10.2026
+            </strong>
+        </p>
+
+        <p>
+            Сформирован:
+            05.10.2026
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         ОБЩАЯ СТАТИСТИКА
+         ===================================================== -->
+
+    <div class="stats">
+
+
+        <div class="stat">
+
+            <div class="stat-title">
+                Сотрудников
+            </div>
+
+            <div class="stat-value">
+                4
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-title">
+                Рабочее время
+            </div>
+
+            <div class="stat-value">
+                23 ч 27 мин
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-title">
+                Активное время
+            </div>
+
+            <div class="stat-value">
+                10 ч 25 мин
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-title">
+                Простой
+            </div>
+
+            <div class="stat-value">
+                12 ч 14 мин
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-title">
+                Общая активность
+            </div>
+
+            <div class="stat-value">
+                44.5%
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         AI АНАЛИЗ КОМАНДЫ
+         ===================================================== -->
+
+    <div class="section ai-section">
+
+        <h2>
+            🤖 AI-анализ команды
+        </h2>
+
+        <div class="ai-summary">
+
+            <p>Общая оценка:</p>
+<p>За отчетный период зафиксирован малый объем учтенного времени (1–2 рабочих дня на сотрудника) со средней активностью за компьютером 44.5%. Во всех профилях наблюдается систематическое расхождение с графиком (опоздания и ранние уходы), а также значительный разброс по доле времени простоя между сотрудниками.</p>
+<p>Положительные моменты:</p>
+<p>- Сотрудник DIANKA отработал наибольшее количество времени (11 ч 44 мин), сохраняя при этом высокий показатель компьютерной активности (61.7%).</p>
+<p>- Сотрудник TATYANA tatya демонстрирует стабильный баланс: более половины зафиксированного времени (53.7%) приходится на действия в системе.</p>
+<p>Зоны внимания:</p>
+<p>- Дисциплина графика: во всех учтенных сменах у каждого сотрудника зафиксированы опоздания и ранние уходы.</p>
+<p>- Высокая доля простоя у сотрудника DMITRY: 6 ч 30 мин из 7 ч 18 мин общего времени прошли без взаимодействия с компьютером.</p>
+<p>- Техническая аномалия: учетная запись TATYANA wsiaccount имеет длительность сессии всего 2 минуты, что требует проверки на предмет дублирования профилей.</p>
+<p>Рекомендации:</p>
+<p>- Проверить корректность настройки рабочего графика в системе мониторинга, чтобы исключить технические ошибки фиксации опозданий и ранних уходов.</p>
+<p>- Уточнить у сотрудников характер выполняемых обязанностей для учета задач, проходящих вне компьютера (совещания, звонки, бумажная работа).</p>
+<p>- Настроить регламент учета офлайн-активности (ручное добавление задач или пауза таймера).</p>
+<p>- Провести аудит учетных записей и деактивировать дублирующие или тестовые профили (в частности, TATYANA wsiaccount).</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         AI АНАЛИЗ СОТРУДНИКОВ
+         ===================================================== -->
+
+    <div class="section ai-section">
+
+        <h2>
+            🤖 AI-анализ сотрудников
+        </h2>
+
+        <div class="ai-grid">
+
+            
+        <div class="ai-card">
+
+            <div class="ai-card-header">
+
+                <span class="ai-icon">
+                    🤖
+                </span>
+
+                <strong>
+                    DMITRY дмитрий
+                </strong>
+
+            </div>
+
+            <div class="ai-content">
+
+                <p>Оценка:</p>
+<p>Сотрудник отработал запланированные смены, однако зафиксирован низкий уровень активности за компьютером и отклонения от графика прихода и ухода.</p>
+<p>Что хорошо:</p>
+<p>Сотрудник отработал все запланированные дни, пропусков рабочих смен нет.</p>
+<p>На что обратить внимание:</p>
+<p>Зафиксирована низкая доля активного времени за компьютером при значительном времени простоя в системе. Кроме того, присутствуют отклонения от графика (опоздания и ранний уход).</p>
+<p>Рекомендация:</p>
+<p>Руководителю рекомендуется уточнить специфику рабочих задач сотрудника в эти дни: возможно, значительная часть обязанностей выполнялась вне компьютера (встречи, звонки, бумажная работа или выездные задачи). Также стоит обсудить соблюдение рабочего графика и при необходимости настроить учет оффлайн-деятельности.</p>
+
+            </div>
+
+        </div>
+    
+        <div class="ai-card">
+
+            <div class="ai-card-header">
+
+                <span class="ai-icon">
+                    🤖
+                </span>
+
+                <strong>
+                    TATYANA tatya
+                </strong>
+
+            </div>
+
+            <div class="ai-content">
+
+                <p>AI-анализ временно недоступен. Основные показатели доступны в отчёте.</p>
+
+            </div>
+
+        </div>
+    
+        <div class="ai-card">
+
+            <div class="ai-card-header">
+
+                <span class="ai-icon">
+                    🤖
+                </span>
+
+                <strong>
+                    DIANKA диана
+                </strong>
+
+            </div>
+
+            <div class="ai-content">
+
+                <p>Оценка:</p>
+<p>Сотрудник полностью отработал запланированные рабочие дни без пропусков, однако в течение короткой недели зафиксированы отклонения от графика и заметная доля времени без компьютерной активности.</p>
+<p>Что хорошо:</p>
+<p>Запланированный график по количеству рабочих дней выполнен в полном объеме, пропуски отсутствуют.</p>
+<p>На что обратить внимание:</p>
+<p>Присутствует значительное время простоя за компьютером (более трети от общего времени), а также регулярные отклонения от графика — зафиксированы опоздания в оба рабочих дня и один ранний уход.</p>
+<p>Рекомендация:</p>
+<p>Руководителю стоит уточнить специфику текущих задач сотрудника: включает ли функционал работу вне компьютера (переговоры, документы, совещания), что могло бы объяснить периоды неактивности. Также рекомендуется обсудить причины смещения графика и согласовать соблюдение установленного режима работы.</p>
+
+            </div>
+
+        </div>
+    
+        <div class="ai-card">
+
+            <div class="ai-card-header">
+
+                <span class="ai-icon">
+                    🤖
+                </span>
+
+                <strong>
+                    TATYANA wsiaccount
+                </strong>
+
+            </div>
+
+            <div class="ai-content">
+
+                <p>AI-анализ временно недоступен. Основные показатели доступны в отчёте.</p>
+
+            </div>
+
+        </div>
+    
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         СОТРУДНИКИ
+         ===================================================== -->
+
+    <div class="section">
+
+        <h2>
+            👥 Сотрудники
+        </h2>
+
+        <div class="employee-grid">
+
+            
+        <div class="employee-card critical">
+
+            <div class="employee-name">
+                DMITRY дмитрий
+            </div>
+
+            <div class="employee-percent">
+                11.0%
+            </div>
+
+            <div class="employee-status">
+                Очень низкая активность
+            </div>
+
+            <div class="employee-info">
+
+                <div>
+                    <span>Рабочее время</span>
+                    <strong>
+                        7 ч 18 мин
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Активность</span>
+                    <strong>
+                        48 мин
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Простой</span>
+                    <strong>
+                        6 ч 30 мин
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Опоздания</span>
+                    <strong>
+                        2
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Ранние уходы</span>
+                    <strong>
+                        1
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+    
+        <div class="employee-card medium">
+
+            <div class="employee-name">
+                TATYANA tatya
+            </div>
+
+            <div class="employee-percent">
+                53.7%
+            </div>
+
+            <div class="employee-status">
+                Средняя активность
+            </div>
+
+            <div class="employee-info">
+
+                <div>
+                    <span>Рабочее время</span>
+                    <strong>
+                        4 ч 22 мин
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Активность</span>
+                    <strong>
+                        2 ч 20 мин
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Простой</span>
+                    <strong>
+                        1 ч 29 мин
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Опоздания</span>
+                    <strong>
+                        2
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Ранние уходы</span>
+                    <strong>
+                        2
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+    
+        <div class="employee-card medium">
+
+            <div class="employee-name">
+                DIANKA диана
+            </div>
+
+            <div class="employee-percent">
+                61.7%
+            </div>
+
+            <div class="employee-status">
+                Средняя активность
+            </div>
+
+            <div class="employee-info">
+
+                <div>
+                    <span>Рабочее время</span>
+                    <strong>
+                        11 ч 44 мин
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Активность</span>
+                    <strong>
+                        7 ч 14 мин
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Простой</span>
+                    <strong>
+                        4 ч 15 мин
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Опоздания</span>
+                    <strong>
+                        2
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Ранние уходы</span>
+                    <strong>
+                        1
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+    
+        <div class="employee-card good">
+
+            <div class="employee-name">
+                TATYANA wsiaccount
+            </div>
+
+            <div class="employee-percent">
+                100.0%
+            </div>
+
+            <div class="employee-status">
+                Высокая активность
+            </div>
+
+            <div class="employee-info">
+
+                <div>
+                    <span>Рабочее время</span>
+                    <strong>
+                        2 мин
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Активность</span>
+                    <strong>
+                        2 мин
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Простой</span>
+                    <strong>
+                        0 мин
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Опоздания</span>
+                    <strong>
+                        1
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Ранние уходы</span>
+                    <strong>
+                        1
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+    
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         ТАБЛИЦА
+         ===================================================== -->
+
+    <div class="section">
+
+        <h2>
+            📋 Подробная статистика
+        </h2>
+
+        <div style="overflow-x:auto;">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Сотрудник
+                        </th>
+
+                        <th>
+                            Рабочее время
+                        </th>
+
+                        <th>
+                            Активность
+                        </th>
+
+                        <th>
+                            Простой
+                        </th>
+
+                        <th>
+                            % активности
+                        </th>
+
+                        <th>
+                            Опоздания
+                        </th>
+
+                        <th>
+                            Ранние уходы
+                        </th>
+
+                        <th>
+                            Дни
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    
+        <tr>
+
+            <td>
+                <strong>
+                    DMITRY дмитрий
+                </strong>
+            </td>
+
+            <td>
+                7 ч 18 мин
+            </td>
+
+            <td>
+                48 мин
+            </td>
+
+            <td>
+                6 ч 30 мин
+            </td>
+
+            <td>
+                <span class="percent critical">
+                    11.0%
+                </span>
+            </td>
+
+            <td>
+                2
+            </td>
+
+            <td>
+                1
+            </td>
+
+            <td>
+                2
+                /
+                2
+            </td>
+
+        </tr>
+    
+        <tr>
+
+            <td>
+                <strong>
+                    TATYANA tatya
+                </strong>
+            </td>
+
+            <td>
+                4 ч 22 мин
+            </td>
+
+            <td>
+                2 ч 20 мин
+            </td>
+
+            <td>
+                1 ч 29 мин
+            </td>
+
+            <td>
+                <span class="percent medium">
+                    53.7%
+                </span>
+            </td>
+
+            <td>
+                2
+            </td>
+
+            <td>
+                2
+            </td>
+
+            <td>
+                2
+                /
+                2
+            </td>
+
+        </tr>
+    
+        <tr>
+
+            <td>
+                <strong>
+                    DIANKA диана
+                </strong>
+            </td>
+
+            <td>
+                11 ч 44 мин
+            </td>
+
+            <td>
+                7 ч 14 мин
+            </td>
+
+            <td>
+                4 ч 15 мин
+            </td>
+
+            <td>
+                <span class="percent medium">
+                    61.7%
+                </span>
+            </td>
+
+            <td>
+                2
+            </td>
+
+            <td>
+                1
+            </td>
+
+            <td>
+                2
+                /
+                2
+            </td>
+
+        </tr>
+    
+        <tr>
+
+            <td>
+                <strong>
+                    TATYANA wsiaccount
+                </strong>
+            </td>
+
+            <td>
+                2 мин
+            </td>
+
+            <td>
+                2 мин
+            </td>
+
+            <td>
+                0 мин
+            </td>
+
+            <td>
+                <span class="percent good">
+                    100.0%
+                </span>
+            </td>
+
+            <td>
+                1
+            </td>
+
+            <td>
+                1
+            </td>
+
+            <td>
+                1
+                /
+                1
+            </td>
+
+        </tr>
+    
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         ПОЯСНЕНИЕ
+         ===================================================== -->
+
+    <div class="section">
+
+        <h2>
+            ℹ️ Что означает активность
+        </h2>
+
+        <p>
+            Процент активности рассчитывается как отношение
+            активного времени к общему рабочему времени.
+        </p>
+
+        <p>
+            Низкая компьютерная активность сама по себе
+            не означает низкую производительность.
+            Например, сотрудник может проводить встречи,
+            звонки или выполнять задачи вне компьютера.
+        </p>
+
+        <p>
+            AI-анализ является вспомогательным инструментом
+            и не должен использоваться как единственное
+            основание для кадровых решений.
+        </p>
+
+        <p>
+            Данные получены автоматически из Bitcop.
+        </p>
+
+    </div>
+
+
+    <div class="footer">
+
+        Bitcop AI Analytics ·
+        Gemini ·
+        Автоматический недельный отчёт
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
