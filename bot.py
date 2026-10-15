@@ -61,7 +61,12 @@ OPENAI_MODEL = os.getenv(
     "gpt-4.1-mini",
 )
 
-DIRECTOR_CHAT_ID = str(TELEGRAM_CHAT_ID or "").strip()
+DIRECTOR_CHAT_IDS = {
+    str(part).strip()
+    for part in re.split(r"[,;\s]+", str(TELEGRAM_CHAT_ID or "").strip())
+    if str(part).strip()
+}
+DIRECTOR_CHAT_ID = ", ".join(sorted(DIRECTOR_CHAT_IDS))
 
 openai_client = (
     OpenAI(api_key=OPENAI_API_KEY)
@@ -78,10 +83,8 @@ def is_director(update: Update) -> bool:
     if not update.effective_chat:
         return False
 
-    return (
-        bool(DIRECTOR_CHAT_ID)
-        and str(update.effective_chat.id) == DIRECTOR_CHAT_ID
-    )
+    chat_id = str(update.effective_chat.id)
+    return bool(DIRECTOR_CHAT_IDS) and chat_id in DIRECTOR_CHAT_IDS
 
 
 # ============================================================
@@ -153,13 +156,21 @@ def bitcop_request(endpoint, params=None):
         f"{endpoint.lstrip('/')}"
     )
 
-    response = requests.get(
-        url,
-        params=request_params,
-        timeout=60,
-    )
+    try:
+        response = requests.get(
+            url,
+            params=request_params,
+            timeout=60,
+        )
+    except requests.RequestException as exc:
+        raise RuntimeError(
+            f"Не удалось подключиться к Bitcop ({type(exc).__name__})"
+        ) from None
 
-    response.raise_for_status()
+    if not response.ok:
+        raise RuntimeError(
+            f"Bitcop вернул HTTP {response.status_code}"
+        )
 
     result = response.json()
 
